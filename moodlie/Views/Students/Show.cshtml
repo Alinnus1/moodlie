@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Afisare student";
+}
+<h1>@ViewBag.Student.Nume</h1>
+<p>@ViewBag.Student.Prenume</p>
+<p>@ViewBag.Student.AnStudiu</p>
+<br />
+<a href="/Students/Edit/@ViewBag.Student.StudentId">
+    Modifica
+    student
+</a>
+<form method="post"
+      action="/Students/Delete/@ViewBag.Student.StudentId">
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <button type="submit">Sterge studentul</button>
+</form>
+<hr />
+<a href="/Students/Index">Inapoi la lista studentilor</a>
+<br />
+<a href="/Students/New">Adauga alt student</a>
+<br />

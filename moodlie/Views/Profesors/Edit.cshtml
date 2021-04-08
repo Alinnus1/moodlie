@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit</h2>
+<p>
+    Afisare formular de editare profesor - cu datele vechi ale
+    profesorului
+</p>
+<form method="post" action="/Profesors/Edit/@ViewBag.Profesor.ProfesorId">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <label>Nume</label>
+    <br />
+    <input type="text" name="Nume" value="@ViewBag.Profesor.Nume" />
+    <br /><br />
+    <label>Prenume</label>
+    <br />
+    <input type="text" name="Prenume" value="@ViewBag.Profesor.Prenume" />
+    <br /><br />
+    <label>GradDidactic</label>
+    <br />
+    <input type="text" name="GradDidactic" value="@ViewBag.Profesor.GradDidactic" />
+    <br />
+    <button type="submit">Modifica profesor</button>
+</form>

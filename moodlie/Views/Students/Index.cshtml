@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Lista studenti";
+}
+<h2>@ViewBag.Title</h2>
+@foreach (var student in ViewBag.Students)
+{
+    <p>@student.Nume</p>
+    <p>@student.Prenume</p>
+    <p>@student.AnStudiu</p>
+    <a href="/Students/Show/@student.StudentId">Afisare student</a>
+    <br />
+    <hr />
+    <br />
+}
+<a href="/Students/New">Adauga alt student</a>
+<br />
