@@ -16,6 +16,8 @@ namespace moodlie.Models
         [Required]
         public string Prenume { get; set; }
         [Required]
-        public int AnStudiu { get; set; }   
+        public int AnStudiu { get; set; }
+
+        public string UserId { get; set; }
     }
 }

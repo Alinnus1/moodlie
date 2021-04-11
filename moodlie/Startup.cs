@@ -53,6 +53,12 @@ namespace moodlie
                 role.Name = "Student";
                 roleManager.Create(role);
             }
+            if (!roleManager.RoleExists("Waiting"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Waiting";
+                roleManager.Create(role);
+            }
         }
 
     }
