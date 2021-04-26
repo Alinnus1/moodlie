@@ -33,6 +33,8 @@ namespace moodlie.Models
         public DbSet<Student> Students { get; set; }
         public DbSet<Profesor> Profesors { get; set; }
         public DbSet <Curs> Curses { set; get; }
+        public DbSet <CursStudent> CursStudents { set; get; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

@@ -17,6 +17,8 @@ namespace moodlie.App_Start
                            orderby student.Nume
                            select student;
             ViewBag.Students = students;
+            ViewBag.Curses = db.Curses;
+            ViewBag.CursStudents = db.CursStudents;
             return View();
         }
         public ActionResult Show(int id)

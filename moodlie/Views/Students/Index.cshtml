@@ -8,6 +8,19 @@
     <p>@student.Nume</p>
     <p>@student.Prenume</p>
     <p>@student.AnStudiu</p>
+    <p>Cursuri la care studentul este inrolat:</p>
+    foreach (var curs in ViewBag.Curses)
+    {
+        foreach (var cursstudent in ViewBag.CursStudents)
+        {
+
+            if(cursstudent.CursId == curs.CursId && cursstudent.StudentId == student.StudentId)
+            {
+                <p>@curs.Nume</p>
+                break;
+            }
+        }
+    }
     <a href="/Students/Show/@student.StudentId">Afisare student</a>
     <br />
     <hr />

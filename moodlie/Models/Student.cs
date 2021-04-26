@@ -19,5 +19,7 @@ namespace moodlie.Models
         public int AnStudiu { get; set; }
 
         public string UserId { get; set; }
+
+        public virtual ICollection<Curs> Curses { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "NewStudent";
+}
+
+<h2>Adaugare Student la cursul selectat</h2>
+<form method="post" action="/Curses/NewStudent/@ViewBag.IdCurs">
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+    <br />
+    @Html.DropDownList("student",new SelectList(ViewBag.Students,"Value","Text"),
+        "Selectati student" , new {@class = "form-control"} )
+    <br />
+    <br />
+        <button class="button6" type="submit"> Adauga student</button>
+</form>
+

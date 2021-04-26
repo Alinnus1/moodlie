@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show</h2>
+
+<div>
+    <strong>Titlu curs: </strong>@Model.Nume
+    <strong>Titular curs:</strong>@Model.ProfesorTitular.Nume @Model.ProfesorTitular.Prenume
+</div>
+<div>
+    <strong>Lista studenti inscrisi:</strong>
+    @foreach(moodlie.Models.Student student in ViewBag.Students)
+    {
+        <div>
+            @student.Nume @student.Prenume
+        </div>
+    }
+</div>
+@if (User.IsInRole("Admin"))
+{
+    <a href="/Curses/NewStudent/@Model.CursId"></a>
+}

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+@foreach (moodlie.Models.Curs curs in ViewBag.Curses)
+{
+    <p>@curs.Nume</p>
+    <p>@curs.ProfesorTitular.Nume</p>
+    
+    <a href="/Curses/Show/@curs.CursId">Afisare curs</a>
+    <br />
+    <hr />
+    <br />
+}
+<a href="/Curses/New">Adauga alt curs</a>
+<br />
