@@ -7,10 +7,12 @@ using System.Web.Mvc;
 
 namespace moodlie.App_Start
 {
+    [Authorize(Roles ="Admin")]
     public class StudentsController : Controller
     {
         // GET: Students
         private ApplicationDbContext db = new ApplicationDbContext();
+        
         public ActionResult Index()
         {
             var students = from student in db.Students

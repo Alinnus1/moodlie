@@ -4665,26 +4665,26 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
+  background-color: #000;
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #fff;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #fff;
+  color: #9d9d9d;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
   color: #9d9d9d;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #fff;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #fff;
+  color: #e89733;
   background-color: transparent;
 }
 .navbar-inverse .navbar-nav > .active > a,
@@ -6047,7 +6047,14 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
+@media (max-width: 767px){
+  .img1 {
+        display: none;
+  }
+}
+
 @media (min-width: 768px) {
+  
   .modal-dialog {
     width: 600px;
     margin: 30px auto;
