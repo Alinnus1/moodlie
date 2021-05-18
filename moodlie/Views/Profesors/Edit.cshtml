@@ -1,24 +1,61 @@
-﻿@{
-    ViewBag.Title = "Edit";
-}
-<h2>Edit</h2>
-<p>
-    Afisare formular de editare profesor - cu datele vechi ale
-    profesorului
-</p>
-<form method="post" action="/Profesors/Edit/@ViewBag.Profesor.ProfesorId">
-    @Html.HttpMethodOverride(HttpVerbs.Put)
-    <label>Nume</label>
-    <br />
-    <input type="text" name="Nume" value="@ViewBag.Profesor.Nume" />
-    <br /><br />
-    <label>Prenume</label>
-    <br />
-    <input type="text" name="Prenume" value="@ViewBag.Profesor.Prenume" />
-    <br /><br />
-    <label>GradDidactic</label>
-    <br />
-    <input type="text" name="GradDidactic" value="@ViewBag.Profesor.GradDidactic" />
-    <br />
-    <button type="submit">Modifica profesor</button>
-</form>
+﻿<style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        max-width:none;
+    }
+
+    button[type=submit] {
+        width: 100%;
+        background-color: #E79633;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button[type=submit]:hover {
+        background-color: #D98C2F;
+    }
+
+    .divul {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>
+
+
+<div class="container" style="display:inline-flex">
+    <div style="height: 140px; width: 350px; display: flex; align-items: center; ">
+        <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Editare profesor</b></p>
+
+    </div>
+</div>
+
+
+<div class="divul">
+    <form method="post" action="/Profesors/Edit/@ViewBag.Profesor.ProfesorId">
+        @Html.HttpMethodOverride(HttpVerbs.Put)
+        <label>Nume</label>
+        <br />
+        <input type="text" name="Nume" value="@ViewBag.Profesor.Nume" />
+        <br /><br />
+        <label>Prenume</label>
+        <br />
+        <input type="text" name="Prenume" value="@ViewBag.Profesor.Prenume" />
+        <br /><br />
+        <label>GradDidactic</label>
+        <br />
+        <input type="text" name="GradDidactic" value="@ViewBag.Profesor.GradDidactic" />
+        <br />
+        <button type="submit">Modifica profesor</button>
+    </form>
+</div>

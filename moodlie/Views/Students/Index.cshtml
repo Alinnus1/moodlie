@@ -1,30 +1,69 @@
-﻿
-@{
-    ViewBag.Title = "Lista studenti";
-}
-<h2>@ViewBag.Title</h2>
+﻿<style>
+
+    .aul {
+        width: 100%;
+        background-color: #E79633;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        
+    }
+
+    .aul:hover {
+        background-color: #D98C2F;
+        text-decoration: none;
+        color:white;
+
+        
+    }
+
+    .divul {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+</style>
+
+<div class="container" style="display:inline-flex">
+    <div style="height: 140px; width: 350px; display: flex; align-items: center; ">
+        <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Lista studenti</b></p>
+
+    </div>
+</div>
 @foreach (var student in ViewBag.Students)
 {
-    <p><b>Nume de familie: </b>@student.Nume</p>
-    <p><b>Prenume: </b>@student.Prenume</p>
-    <p><b>An de studiu:</b> @student.AnStudiu</p>
-    <p><i>Cursuri </i>la care studentul este <b>inrolat</b>:</p>
-    foreach (var curs in ViewBag.Curses)
-    {
-        foreach (var cursstudent in ViewBag.CursStudents)
+    <div class="divul">
+        <p><b>Nume de familie: </b>@student.Nume</p>
+        <p><b>Prenume: </b>@student.Prenume</p>
+        <p><b>An de studiu: </b>@student.AnStudiu</p>
+        <p><i>Cursuri </i>la care studentul este <b>inrolat</b>:</p>
+        @foreach (var curs in ViewBag.Curses)
         {
-
-            if(cursstudent.CursId == curs.CursId && cursstudent.StudentId == student.StudentId)
+            foreach (var cursstudent in ViewBag.CursStudents)
             {
-                <p>@curs.Nume</p>
-                break;
+
+                if (cursstudent.CursId == curs.CursId && cursstudent.StudentId == student.StudentId)
+                {
+                    <p>@curs.Nume</p>
+                    break;
+                }
             }
         }
-    }
-    <a href="/Students/Show/@student.StudentId">Afisare student</a>
+        <br />
+        <a class="aul" href="/Students/Show/@student.StudentId">Afisare student</a>
+        <br />
+    </div>
     <br />
-    <hr />
-    <br />
+
+
 }
-<a href="/Students/New">Adauga alt student</a>
+<br />
+<a class="aul" href="/Students/New" >Adauga un nou student</a>
 <br />

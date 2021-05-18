@@ -1,13 +1,13 @@
 ﻿
-@{
-    ViewBag.Title = "Show";
-}
+<div class="container" style="display:inline-flex">
+    <div style="height: 140px; width: 350px; display: flex; align-items: center; ">
+        <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Afisare curs</b></p>
 
-<h2>Show</h2>
-
+    </div>
+</div>
 <div>
-    <strong>Titlu curs: </strong>@Model.Nume
-    <strong>Titular curs:</strong>@Model.ProfesorTitular.Nume @Model.ProfesorTitular.Prenume
+    <p><strong>Titlu curs: </strong>@Model.Nume</p>
+    <p><strong>Titular curs:</strong>@Model.ProfesorTitular.Nume @Model.ProfesorTitular.Prenume</p>
 </div>
 <div>
     <strong>Lista studenti inscrisi:</strong>
@@ -20,5 +20,5 @@
 </div>
 @if (User.IsInRole("Admin"))
 {
-    <a href="/Curses/NewStudent/@Model.CursId"></a>
+    <a href="/Curses/NewStudent/@Model.CursId">Adaugare student la acest curs</a>
 }

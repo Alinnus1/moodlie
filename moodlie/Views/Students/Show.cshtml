@@ -1,9 +1,12 @@
-﻿@{
-    ViewBag.Title = "Afisare student";
-}
-<h1>@ViewBag.Student.Nume</h1>
-<p>@ViewBag.Student.Prenume</p>
-<p>@ViewBag.Student.AnStudiu</p>
+﻿<div class="container" style="display:inline-flex">
+    <div style="height: 140px; width: 350px; display: flex; align-items: center; ">
+        <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Afisare student</b></p>
+
+    </div>
+</div>
+<p><b>Nume de familie: </b>@ViewBag.Student.Nume</p>
+<p><b>Prenume: </b>@ViewBag.Student.Prenume</p>
+<p><b>An de studiu: </b>@ViewBag.Student.AnStudiu</p>
 <br />
 <a href="/Students/Edit/@ViewBag.Student.StudentId">
     Modifica

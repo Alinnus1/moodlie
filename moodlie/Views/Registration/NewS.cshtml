@@ -1,20 +1,56 @@
-﻿
-@{
-    ViewBag.Title = "New";
-}
+﻿<style>
+    input, select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        max-width: none;
+    }
 
-<form method="post" action="/Registration/NewS">
-    <label>Nume</label>
-    <br />
-    <input type="text" name="Nume" />
-    <br /><br />
-    <label>Prenume</label>
-    <br />
-    <input type="text" name="Prenume" />
-    <br /><br />
-    <label>AnStudiu</label>
-    <br />
-    <input type="text" name="AnStudiu" />
-    <br />
-    <button type="submit">Inreagistreaza-te</button>
-</form>
+    button[type=submit] {
+        width: 100%;
+        background-color: #E79633;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        button[type=submit]:hover {
+            background-color: #D98C2F;
+        }
+
+    .divul {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>
+<div class="container" style="display:inline-flex">
+    <div style="height: 140px; width: 450px; display: flex; align-items: center; ">
+        <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Inregistrare drept student</b></p>
+
+    </div>
+</div>
+<div class="divul">
+    <form method="post" action="/Registration/NewS">
+        <label>Nume</label>
+        <br />
+        <input type="text" name="Nume" />
+        <br /><br />
+        <label>Prenume</label>
+        <br />
+        <input type="text" name="Prenume" />
+        <br /><br />
+        <label>AnStudiu</label>
+        <br />
+        <input type="number" min="1" max="3" name="AnStudiu" />
+        <br />
+        <button type="submit">Inreagistreaza-te</button>
+    </form>
+</div>
