@@ -30,6 +30,7 @@ namespace moodlie.Controllers
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var v = User.Identity.GetUserId();
             student.UserId = v;
+            
            
             try
             {

@@ -11,6 +11,8 @@ namespace moodlie.Controllers
     {
         // GET: Profesors
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var profesors= from profesor in db.Profesors
@@ -19,6 +21,7 @@ namespace moodlie.Controllers
             ViewBag.Profesors= profesors;
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Show(int id)
         {
             Profesor profesor = db.Profesors.Find(id);
@@ -26,11 +29,13 @@ namespace moodlie.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult New(Profesor profesor)
         {
             try
@@ -44,7 +49,7 @@ namespace moodlie.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Profesor profesor = db.Profesors.Find(id);
@@ -53,6 +58,7 @@ namespace moodlie.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Profesor requestProfesor)
         {
             try
@@ -73,6 +79,7 @@ namespace moodlie.Controllers
             }
         }
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Profesor profesor = db.Profesors.Find(id);

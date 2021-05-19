@@ -1,24 +1,161 @@
-﻿
+﻿<style>
+
+    .aul,.aul1 {
+        width: 100%;
+        background-color: #E79633;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        max-width: 190px;
+    }
+
+        .aul:hover {
+            background-color: #D98C2F;
+            text-decoration: none;
+            color: white;
+        }
+
+    .divul {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+</style>
+
 <div class="container" style="display:inline-flex">
     <div style="height: 140px; width: 350px; display: flex; align-items: center; ">
         <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Afisare curs</b></p>
 
     </div>
 </div>
-<div>
+<div class=" divul">
     <p><strong>Titlu curs: </strong>@Model.Nume</p>
-    <p><strong>Titular curs:</strong>@Model.ProfesorTitular.Nume @Model.ProfesorTitular.Prenume</p>
-</div>
-<div>
-    <strong>Lista studenti inscrisi:</strong>
-    @foreach(moodlie.Models.Student student in ViewBag.Students)
+    <p><strong>Titular curs: </strong>@Model.ProfesorTitular.Nume @Model.ProfesorTitular.Prenume</p>
+    @if (User.IsInRole("Admin"))
     {
-        <div>
-            @student.Nume @student.Prenume
-        </div>
+        <br />
+        <a class="aul" href="/Curses/Edit/@Model.CursId">
+            Modifica
+            curs
+        </a>
     }
+
 </div>
-@if (User.IsInRole("Admin"))
+
+<hr />
+
+@if (User.IsInRole("Profesor") || User.IsInRole("Admin"))
 {
-    <a href="/Curses/NewStudent/@Model.CursId">Adaugare student la acest curs</a>
+    <div class="divul">
+
+        @using (Html.BeginForm(actionName: "New", controllerName: "Sections"))  //sectiune noua
+        {
+            <div>
+                <p><b>Adauga o noua sectiune</b></p>
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                <input type="hidden" name="CursId" value=@Model.CursId />
+                @Html.Label("Title", "Titlu sectiune")
+                <br />
+                <input type="text" class="form-control" name="Titlu">
+                @Html.ValidationMessage("Title", null, new { @class = "text-danger" })
+                <br />
+                <button class="aul" type="submit">
+                    Adauga sectiune
+                </button>
+            </div>
+        }
+
+    </div>
+}
+<br />
+
+<div class="divul">
+    <div class="row">
+
+        @foreach (var sec in Model.Sections) // listare sectiuni
+        {
+            <div class="panel panel-default col-sm-4" style="background-color:#E79633">
+                <div class="panel-body">
+                    <strong style="color:azure"> @sec.Titlu </strong>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Profesor"))
+                    {
+                        <a href="/Sections/Delete/@sec.Id">
+                            <span class="glyphicon glyphicon-remove pull-right" style="color: darkred"></span>
+                        </a>}
+                    <br />
+                </div>
+
+                <div class="panel-footer">
+                    @if (User.IsInRole("Admin") || User.IsInRole("Profesor"))
+                    {
+                        using (Html.BeginForm("Upload", "Files", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <input type="hidden" name="sectionId" value="@sec.Id" />
+                            <p><label>Alegeti un fisier</label></p>
+                            <input type="file" name="uploadedFile" />
+                            <br />
+                            <input  type="submit" value="Upload" /> }
+                        <br />}
+                    <p><b>Documente atasate:</b></p>
+                    @foreach (var file in sec.Files)
+                    {
+                        <div>
+
+                            <a href="/Files/DownloadFile/@file.FileId"> @file.FileName </a>
+                            @if (User.IsInRole("Admin") || User.IsInRole("Profesor"))
+                            {
+                                <a href="/Files/Delete/@file.FileId">
+                                    <span class="glyphicon glyphicon-remove pull-right" style="color: darkred"></span>
+                                </a>}
+                            <br />
+                            <span class="label label-success" style="        background-color: #E79633;"> @Model.ProfesorTitular.Nume @Model.ProfesorTitular.Prenume @file.UploadTime </span>
+                            <span></span>
+                            <hr />
+                        </div>}
+
+                </div>
+                <br />
+            </div>}
+
+    </div>
+</div>
+<hr />
+
+@*@section scripts{
+        <script>
+            function openTab(var file) {
+                window.open(file, '_blank');
+            }
+        </script>
+    }*@
+
+
+<div class="aul1" style="max-width:none">
+    <h3><strong>Studenti inscrisi la acest curs</strong> </h3>
+    <div class="row">
+        @foreach (var student in Model.Students)
+        {
+            <div class="panel panel-default col-sm-4" style="background-color:#E79633;border:none">
+                <div class="panel-body">
+                    <strong>Student: </strong>
+                    @student.Nume @student.Prenume
+                    <br />
+                    <small> <strong>An de studiu:</strong> @student.AnStudiu </small>
+                </div>
+            </div>}
+    </div>
+   
+</div>
+
+
+@if (User.IsInRole("Admin"))
+{   <br>
+    <a class="aul" href="/Curses/NewStudent/@Model.CursId">Adaugare student la acest curs</a>
 }

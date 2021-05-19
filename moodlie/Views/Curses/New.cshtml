@@ -1,4 +1,6 @@
-﻿<style>
+﻿@model moodlie.Models.Curs
+
+<style>
     input[type=text], select {
         width: 100%;
         padding: 12px 20px;
@@ -45,6 +47,9 @@
         <input type="text" name="Nume" />
         <br /><br />
         <label>ProfesorTitular</label>
+        @Html.DropDownListFor(m => m.ProfesorId, new SelectList(Model.Profesors, "Value", "Text"),
+        "Selectati profesorul", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProfesorId, "", new { @class = "text-danger" })
         <br />
 
         <br /><br />
