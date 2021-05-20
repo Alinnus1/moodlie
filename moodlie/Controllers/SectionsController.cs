@@ -24,10 +24,10 @@ namespace moodlie.Controllers
             try
             {
                 var userId = User.Identity.GetUserId();
-                //var profesorId = db.Profesors.Where(p => p.UserId == userId).FirstOrDefault().ProfesorId;
+                var profesorId = db.Profesors.Where(p => p.UserId == userId).FirstOrDefault().ProfesorId;
                 var cursId = section.CursId;
                 var curs = db.Curses.Find(cursId);
-                if (ModelState.IsValid) //&& profesorId == curs.ProfesorId
+                if (ModelState.IsValid && (profesorId == curs.ProfesorId || User.IsInRole("Admin"))) //
                 {
                     db.Sections.Add(section);
                     db.SaveChanges();
