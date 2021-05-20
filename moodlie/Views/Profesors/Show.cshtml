@@ -1,4 +1,35 @@
-﻿<div class="container" style="display:inline-flex">
+﻿<style>
+
+    .aul {
+        width: 100%;
+        background-color: #E79633;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        max-width: 190px;
+    }
+
+        .aul:hover {
+            background-color: #D98C2F;
+            text-decoration: none;
+            color: white;
+        }
+
+    .divul {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+</style>
+
+<div class="container" style="display:inline-flex">
     <div style="height: 140px; width: 350px; display: flex; align-items: center; ">
         <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Afisare profesor</b></p>
 
@@ -8,17 +39,21 @@
 <p><b>Prenume: </b>@ViewBag.Profesor.Prenume</p>
 <p><b>Gradul didactic: </b>@ViewBag.Profesor.GradDidactic</p>
 <br />
-<a href="/Profesors/Edit/@ViewBag.Profesor.ProfesorId">
+<a class="aul" href="/Profesors/Edit/@ViewBag.Profesor.ProfesorId">
     Modifica
-    Profesor
+    profesor
 </a>
+
 <form method="post"
       action="/Profesors/Delete/@ViewBag.Profesor.ProfesorId">
     @Html.HttpMethodOverride(HttpVerbs.Delete)
-    <button type="submit">Sterge profesor</button>
+    <br />
+    <button class="aul" style="background-color:darkred" type="submit">Sterge profesor</button>
 </form>
 <hr />
-<a href="/Profesors/Index">Inapoi la lista profesorilor</a>
+<a class="aul" href="/Profesors/Index">Inapoi la lista profesorilor</a>
 <br />
-<a href="/Profesors/New">Adauga alt profesor</a>
+<br />
+<br />
+<a class="aul" href="/Profesors/New">Adauga un nou profesor</a>
 <br />

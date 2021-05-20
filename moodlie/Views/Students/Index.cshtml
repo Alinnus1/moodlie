@@ -44,17 +44,12 @@
         <p><b>Prenume: </b>@student.Prenume</p>
         <p><b>An de studiu: </b>@student.AnStudiu</p>
         <p><i>Cursuri </i>la care studentul este <b>inrolat</b>:</p>
-        @foreach (var curs in ViewBag.Curses)
+        @foreach (var curs in student.Curses)
         {
-            foreach (var cursstudent in ViewBag.CursStudents)
-            {
 
-                if (cursstudent.CursId == curs.CursId && cursstudent.StudentId == student.StudentId)
-                {
-                    <p>@curs.Nume</p>
-                    break;
-                }
-            }
+            <p>@curs.Nume</p>
+            break;
+
         }
         <br />
         <a class="aul" href="/Students/Show/@student.StudentId">Afisare student</a>

@@ -19,5 +19,8 @@ namespace moodlie.Models
         public string GradDidactic { get; set; }
 
         public string UserId { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
+        public virtual ICollection<Curs> Curses { get; set; }
     }
 }

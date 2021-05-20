@@ -40,11 +40,14 @@
         <br />
         <a class="aul" href="/Curses/Show/@curs.CursId">Afisare curs</a>
         <br />
-        
+
     </div>
     <br />
-    
+
 }
-<br />
-<a class="aul" href="/Curses/New">Adauga alt curs</a>
-<br />
+@if (User.IsInRole("Admin"))
+{
+    <br />
+    <a class="aul" href="/Curses/New">Adauga alt curs</a>
+    <br />
+}

@@ -1,4 +1,5 @@
-﻿using moodlie.Models;
+﻿using Microsoft.AspNet.Identity;
+using moodlie.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace moodlie.App_Start
     {
         // GET: Students
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             var students = from student in db.Students
@@ -20,9 +22,10 @@ namespace moodlie.App_Start
                            select student;
             ViewBag.Students = students;
             ViewBag.Curses = db.Curses;
-            ViewBag.CursStudents = db.CursStudents;
+            
             return View();
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult Show(int id)
         {
             Student student = db.Students.Find(id);
@@ -30,13 +33,16 @@ namespace moodlie.App_Start
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public ActionResult New(Student student)
         {
+            
             try
             {
                 db.Students.Add(student);
@@ -49,6 +55,7 @@ namespace moodlie.App_Start
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             Student student = db.Students.Find(id);
@@ -57,6 +64,7 @@ namespace moodlie.App_Start
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id, Student requestStudent)
         {
             try
@@ -77,6 +85,7 @@ namespace moodlie.App_Start
             }
         }
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             Student student = db.Students.Find(id);

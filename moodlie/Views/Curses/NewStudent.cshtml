@@ -1,4 +1,5 @@
-﻿<style>
+﻿@model moodlie.Models.Curs
+<style>
     input[type=text], select {
         width: 100%;
         padding: 12px 20px;
@@ -10,7 +11,7 @@
         max-width: none;
     }
 
-    button[type=submit] {
+    .aul {
         width: 100%;
         background-color: #E79633;
         color: white;
@@ -21,14 +22,19 @@
         cursor: pointer;
     }
 
-        button[type=submit]:hover {
-            background-color: #D98C2F;
-        }
+    .aul:hover {
+        background-color: #D98C2F;
+        color:azure;
+    }
 
     .divul {
         border-radius: 5px;
         background-color: #f2f2f2;
         padding: 20px;
+    }
+    p {
+        font-size: 15px;
+
     }
 </style>
 
@@ -37,16 +43,25 @@
         <p style=" margin: 0px -17px 8px; font-size: 46px; font-weight: 500; line-height: 100%;"><b>Adaugare student la cursul selectat</b></p>
     </div>
 </div>
-<div class="divul">
-    <form method="post" action="/Curses/NewStudent/@ViewBag.IdCurs">
-        @Html.HttpMethodOverride(HttpVerbs.Put)
-        <br />
-        @Html.DropDownList("student", new SelectList(ViewBag.Students, "Value", "Text"),
-            "Selectati student", new { @class = "form-control" })
-        <br />
-        <br />
-        <button class="button6" type="submit"> Adauga student</button>
-    </form>
+<h2>@Model.Nume</h2>
+<div style="overflow-y:scroll;">
+    @foreach (var student in ViewBag.Students)
+    {
+     <div class="divul">
+        <div class="panel-body">
+            <p><strong>@student.Prenume @student.Nume</strong></p>
+         
+            <p >An de studiu:  @student.AnStudiu</p>
+            <br />
+            <a class="aul" style="text-decoration:none" href="/Curses/NewStudentAct/@Model.CursId/@student.StudentId/">Inscrie student</a>
+        </div>
+     </div>
+     <hr />
+    }
+    
+
 </div>
+<br />
+<a class="aul" href="/Curses/Show/@Model.CursId"> Intoarce-te la pagina cursului </a>
 
 
